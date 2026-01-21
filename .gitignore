@@ -46,3 +46,4 @@ Thumbs.db
 # Environment
 .env
 .envrc
+wrapped_jasmine.html
