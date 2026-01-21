@@ -1,5 +1,7 @@
 # iMessage Wrapped
 
+![iMessage Wrapped Preview](preview.png)
+
 Generate a beautiful, Spotify Wrapped-style analysis of your iMessage history. See your top contacts, messaging patterns, vocabulary evolution, and relationship insights—all processed locally on your Mac.
 
 **Privacy First:** All analysis happens locally on your machine. Your messages never leave your computer.
