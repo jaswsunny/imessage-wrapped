@@ -15,6 +15,8 @@ Generate a beautiful, Spotify Wrapped-style analysis of your iMessage history. S
 - **Microgenres**: Categorize your contacts (Debate Partners, Hype People, 3am Philosophers, etc.)
 - **Content Analysis**: Sentiment, question ratios, and conversation styles per contact
 
+![Vocabulary Evolution](vocab-preview.png)
+
 ## Requirements
 
 - **macOS** (iMessage stores its database locally on Mac)
