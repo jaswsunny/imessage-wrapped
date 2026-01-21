@@ -250,7 +250,7 @@ def main():
                         f"Jumped from {old:,} to {new:,} messages (+{new-old:,}). Something changed significantly in this relationship."
                     ))
 
-    # 2. Find the Lucas Gelfond pattern - dropped then came back
+    # 2. Find the "comeback" pattern - dropped then came back
     if 2023 in yearly_counts.columns and 2024 in yearly_counts.columns and 2025 in yearly_counts.columns:
         comebacks = yearly_counts[
             (yearly_counts[2023] > 1000) &
