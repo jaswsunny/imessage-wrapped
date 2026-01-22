@@ -17,6 +17,8 @@ Generate a beautiful, Spotify Wrapped-style analysis of your iMessage history. S
 
 ![Vocabulary Evolution](vocab-preview.png)
 
+![Social Churn](social-churn-preview.png)
+
 ## Requirements
 
 - **macOS** (iMessage stores its database locally on Mac)
