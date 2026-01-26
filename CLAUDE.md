@@ -67,3 +67,30 @@ This project processes **personal iMessage data**. ALL output is sensitive.
 ## When User Asks to Commit
 
 Always verify: "I'll commit [specific files]. This excludes personal data. Correct?"
+
+---
+
+## Package Management
+
+If available, use `uv` for all Python package management:
+
+```bash
+# Install dependencies
+uv pip install -r requirements.txt
+
+# Run scripts
+uv run python main.py
+uv run python -c "import nltk; nltk.download('punkt')"
+```
+
+Always prefer `uv run` over activating the virtual environment manually.
+
+## Development Notes
+
+### Avoiding Expensive LLM Regeneration
+
+The LLM insights feature uses ~250k tokens per run. During development:
+
+- **LLM is disabled by default** - use `--llm` flag only when needed
+- **Don't use `--regenerate-llm`** unless you need fresh LLM output
+- Only generate or regenerate when changing prompts or message extraction logic

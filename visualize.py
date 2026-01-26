@@ -73,11 +73,12 @@ def create_stacked_area(monthly_df, title="Message Volume Over Time"):
         ))
 
     fig.update_layout(
-        title=title,
+        title=dict(text=title, y=0.98, x=0.5, xanchor='center', yanchor='top'),
         xaxis_title='Date',
         yaxis_title='Messages',
         hovermode='x unified',
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        legend=dict(orientation='h', yanchor='top', y=-0.15, xanchor='center', x=0.5),
+        margin=dict(b=100),  # Extra bottom margin for legend
     )
 
     return style_fig(fig)

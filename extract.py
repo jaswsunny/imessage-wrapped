@@ -122,6 +122,12 @@ def extract_messages():
     df = df.drop(columns=['attributedBody'])
     df = df[df['text'].notna() & (df['text'] != '')]
 
+    # Convert read/delivered timestamps to datetime (preserving NaT for missing)
+    df['datetime_read'] = pd.to_datetime(df['timestamp_read'], unit='s', utc=True, errors='coerce')
+    df['datetime_read'] = df['datetime_read'].dt.tz_convert('America/Los_Angeles')
+    df['datetime_delivered'] = pd.to_datetime(df['timestamp_delivered'], unit='s', utc=True, errors='coerce')
+    df['datetime_delivered'] = df['datetime_delivered'].dt.tz_convert('America/Los_Angeles')
+
     print(f"Messages with text content: {len(df):,}")
 
     # Convert timestamps to datetime
@@ -144,8 +150,81 @@ def extract_messages():
     return df
 
 
+def extract_attachments():
+    """Extract attachment metadata (photos, videos, files, links)."""
+    query = """
+    SELECT
+        m.ROWID as message_id,
+        m.is_from_me,
+        m.date / 1000000000 + ? as timestamp,
+        h.id as handle_id,
+        h.service,
+        a.filename,
+        a.mime_type,
+        a.transfer_name,
+        a.total_bytes
+    FROM message m
+    JOIN message_attachment_join maj ON m.ROWID = maj.message_id
+    JOIN attachment a ON maj.attachment_id = a.ROWID
+    JOIN chat_message_join cmj ON m.ROWID = cmj.message_id
+    JOIN chat c ON cmj.chat_id = c.ROWID
+    LEFT JOIN handle h ON m.handle_id = h.ROWID
+    WHERE
+        c.chat_identifier NOT LIKE 'chat%'
+    ORDER BY m.date
+    """
+
+    with connect_db() as conn:
+        df = pd.read_sql_query(query, conn, params=(COCOA_EPOCH_OFFSET,))
+
+    print(f"Raw attachments fetched: {len(df):,}")
+
+    # Convert timestamp to datetime
+    df['datetime'] = pd.to_datetime(df['timestamp'], unit='s', utc=True).dt.tz_convert('America/Los_Angeles')
+    df['year'] = df['datetime'].dt.year
+    df['month'] = df['datetime'].dt.month
+    df['date'] = df['datetime'].dt.date
+
+    # Filter to date range
+    df = df[df['year'] >= START_YEAR]
+
+    # Clean handle_id
+    df['contact_id'] = df['handle_id']
+
+    # Categorize attachment types
+    def categorize_attachment(mime_type, filename):
+        if pd.isna(mime_type):
+            mime_type = ''
+        if pd.isna(filename):
+            filename = ''
+        mime_type = str(mime_type).lower()
+        filename = str(filename).lower()
+
+        if 'image' in mime_type or filename.endswith(('.jpg', '.jpeg', '.png', '.gif', '.heic', '.webp')):
+            return 'photo'
+        elif 'video' in mime_type or filename.endswith(('.mp4', '.mov', '.m4v', '.avi')):
+            return 'video'
+        elif 'audio' in mime_type or filename.endswith(('.mp3', '.m4a', '.wav', '.aac', '.caf')):
+            return 'audio'
+        elif filename.endswith(('.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.txt')):
+            return 'document'
+        else:
+            return 'other'
+
+    df['attachment_type'] = df.apply(lambda row: categorize_attachment(row['mime_type'], row['filename']), axis=1)
+
+    print(f"Extracted {len(df):,} attachments from {df['year'].min()} to {df['year'].max()}")
+    print(f"Types: {df['attachment_type'].value_counts().to_dict()}")
+
+    return df
+
+
 if __name__ == "__main__":
     df = extract_messages()
     print(df.head())
     print(f"\nMessages per year:")
     print(df.groupby('year').size())
+
+    print("\n--- Attachments ---")
+    attachments_df = extract_attachments()
+    print(attachments_df.head())
