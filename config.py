@@ -1,6 +1,5 @@
 """Configuration for iMessage Wrapped analysis."""
 from pathlib import Path
-from datetime import datetime
 
 # Paths
 CHAT_DB_PATH = Path.home() / "Library/Messages/chat.db"

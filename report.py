@@ -226,66 +226,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         .contact-name {{ font-weight: 600; font-size: 1rem; }}
         .contact-stats {{ font-size: 0.85rem; color: #8E8E93; }}
 
-        /* Party Cards */
-        .party-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }}
-
-        .party-card {{
-            padding: 1.5rem;
-            border-radius: 16px;
-            background: #F2F2F7;
-            border-left: 4px solid #007AFF;
-        }}
-
-        .party-card.ideas {{ border-left-color: #007AFF; }}
-        .party-card.ride-or-dies {{ border-left-color: #FF2D55; }}
-        .party-card.chaos {{ border-left-color: #FF9500; }}
-        .party-card.work {{ border-left-color: #34C759; }}
-
-        .party-emoji {{ font-size: 2rem; margin-bottom: 0.75rem; }}
-        .party-title {{ font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }}
-        .party-vibe {{ font-size: 0.85rem; color: #8E8E93; font-style: italic; margin-bottom: 1rem; }}
-
-        .party-guests {{ list-style: none; }}
-        .party-guests li {{
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #E5E5EA;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }}
-        .party-guests li:last-child {{ border-bottom: none; }}
-        .party-guests .guest-icon {{ opacity: 0.6; }}
-
-        /* Genre Cards */
-        .genre-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1rem;
-        }}
-
-        .genre-card {{
-            background: #F2F2F7;
-            border-radius: 14px;
-            padding: 1.25rem;
-        }}
-
-        .genre-header {{
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }}
-
-        .genre-emoji {{ font-size: 1.4rem; }}
-        .genre-name {{ font-weight: 600; font-size: 1rem; }}
-        .genre-desc {{ font-size: 0.85rem; color: #8E8E93; font-style: italic; margin-bottom: 0.5rem; }}
-        .genre-people {{ font-size: 0.9rem; color: #3C3C43; }}
-
         /* Grammar Cards */
         .grammar-grid {{
             display: grid;
@@ -370,118 +310,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         .word-arrow {{ font-size: 3rem; color: #C7C7CC; }}
 
         .word-summary {{ font-size: 0.85rem; color: #8E8E93; margin-top: 1rem; font-style: italic; }}
-
-        /* Key Shifts */
-        .shifts-grid {{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }}
-
-        .shift-card {{
-            padding: 1rem 1.25rem;
-            border-radius: 14px;
-            text-align: center;
-        }}
-
-        .shift-card.disappeared {{ background: rgba(255, 59, 48, 0.1); }}
-        .shift-card.emerged {{ background: rgba(52, 199, 89, 0.1); }}
-        .shift-card.constant {{ background: rgba(0, 122, 255, 0.1); }}
-
-        .shift-label {{
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }}
-
-        .shift-card.disappeared .shift-label {{ color: #FF3B30; }}
-        .shift-card.emerged .shift-label {{ color: #34C759; }}
-        .shift-card.constant .shift-label {{ color: #007AFF; }}
-
-        .shift-words {{ font-size: 0.95rem; color: #3C3C43; }}
-
-        /* Vocabulary Timeline */
-        .vocab-section {{ margin-bottom: 2rem; }}
-
-        .vocab-title {{
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }}
-
-        .vocab-title.ai {{ color: #007AFF; }}
-        .vocab-title.politics {{ color: #FF3B30; }}
-        .vocab-title.culture {{ color: #AF52DE; }}
-
-        .vocab-timeline {{
-            position: relative;
-            padding-left: 2rem;
-        }}
-
-        .vocab-timeline::before {{
-            content: '';
-            position: absolute;
-            left: 0.5rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #E5E5EA;
-        }}
-
-        .vocab-year-item {{
-            position: relative;
-            margin-bottom: 1.25rem;
-            padding-left: 1.5rem;
-        }}
-
-        .vocab-year-item::before {{
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: #007AFF;
-            border-radius: 50%;
-        }}
-
-        .vocab-year-label {{ font-weight: 700; font-size: 1rem; color: #007AFF; margin-bottom: 0.35rem; }}
-        .vocab-tags {{ display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem; }}
-
-        .vocab-tag {{
-            padding: 0.3rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }}
-
-        .vocab-tag.ai {{ background: rgba(0, 122, 255, 0.15); color: #007AFF; }}
-        .vocab-tag.politics {{ background: rgba(255, 59, 48, 0.15); color: #FF3B30; }}
-        .vocab-tag.culture {{ background: rgba(175, 82, 222, 0.15); color: #AF52DE; }}
-
-        .vocab-note {{ font-size: 0.85rem; color: #8E8E93; font-style: italic; }}
-
-        /* Highlight Box */
-        .highlight-box {{
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
-            border: 1px solid rgba(0, 122, 255, 0.3);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 1.5rem 0;
-        }}
-
-        .highlight-quote {{
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #007AFF;
-        }}
 
         /* Agreement/Debate Grid */
         .debate-grid {{
@@ -605,39 +433,78 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             padding: 1rem;
         }}
 
-        /* Stats Row */
-        .stats-row {{
+        .alerts-container {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }}
+
+        .alert-section h4 {{
+            margin-bottom: 1rem;
             display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }}
+
+        .alert-card {{
+            display: flex;
+            align-items: center;
             gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            padding: 1rem;
+            background: #F2F2F7;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
         }}
 
-        .stat-card {{
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem 1.25rem;
-            border-radius: 14px;
+        .alert-card.fading {{ border-left: 3px solid #FF9500; }}
+        .alert-card.emerging {{ border-left: 3px solid #34C759; }}
+
+        .alert-icon {{ font-size: 1.5rem; }}
+        .alert-content {{ flex: 1; }}
+        .alert-name {{ font-weight: 600; }}
+        .alert-detail {{ font-size: 0.9rem; color: #3C3C43; }}
+        .alert-time {{ font-size: 0.8rem; color: #8E8E93; }}
+
+        /* LLM Narratives */
+        .llm-narrative {{
+            background: linear-gradient(135deg, rgba(88, 86, 214, 0.05), rgba(0, 122, 255, 0.05));
+            border: 1px solid rgba(88, 86, 214, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }}
+
+        .llm-narrative h3 {{
+            color: #5856D6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }}
+
+        .llm-narrative p {{
+            line-height: 1.8;
+            color: #3C3C43;
+            margin-bottom: 1rem;
+        }}
+
+        .llm-narrative p:last-child {{
+            margin-bottom: 0;
+        }}
+
+        .llm-placeholder {{
             text-align: center;
+            padding: 2rem;
+            color: #666;
+            background: rgba(88, 86, 214, 0.05);
+            border-radius: 12px;
         }}
 
-        .stat-card.green {{ background: rgba(52, 199, 89, 0.1); }}
-        .stat-card.blue {{ background: rgba(0, 122, 255, 0.1); }}
-        .stat-card.orange {{ background: rgba(255, 149, 0, 0.1); }}
-
-        .stat-value {{ font-size: 1.5rem; font-weight: 700; }}
-        .stat-card.green .stat-value {{ color: #34C759; }}
-        .stat-card.blue .stat-value {{ color: #007AFF; }}
-        .stat-card.orange .stat-value {{ color: #FF9500; }}
-
-        .stat-label {{
-            font-size: 0.75rem;
-            color: #8E8E93;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .llm-placeholder code {{
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
         }}
-
-        .stat-desc {{ font-size: 0.8rem; color: #8E8E93; margin-top: 0.25rem; }}
 
         /* Year sections */
         .year-section {{
@@ -683,9 +550,96 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             .word-comparison {{ grid-template-columns: 1fr; }}
             .word-arrow {{ transform: rotate(90deg); }}
             .debate-grid, .churn-grid {{ grid-template-columns: 1fr; }}
-            .shifts-grid {{ grid-template-columns: 1fr; }}
             h1 {{ font-size: 2.5rem; }}
             .hero-stats {{ gap: 1rem; }}
+        }}
+
+        /* Interactive Controls */
+        .interactive-controls {{
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }}
+
+        .control-row {{
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }}
+
+        .control-group {{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }}
+
+        .control-label {{
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8E8E93;
+        }}
+
+        .contact-select {{
+            padding: 0.5rem 1rem;
+            border: 2px solid #E5E5EA;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            min-width: 200px;
+            background: white;
+        }}
+
+        .contact-select:focus {{
+            border-color: #007AFF;
+            outline: none;
+        }}
+
+        /* Comparison Panel */
+        .comparison-panel {{
+            display: none;
+            background: #F2F2F7;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }}
+
+        .comparison-panel.active {{
+            display: block;
+        }}
+
+        .comparison-grid {{
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+        }}
+
+        .comparison-side {{
+            text-align: center;
+        }}
+
+        .comparison-name {{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #007AFF;
+            margin-bottom: 1rem;
+        }}
+
+        .comparison-stat {{
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #E5E5EA;
+        }}
+
+        .comparison-vs {{
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8E8E93;
         }}
     </style>
 </head>
@@ -718,6 +672,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <p>{total_messages:,} messages. {total_contacts:,} people. {num_years} years. One life, rendered in text.</p>
         <p style="margin-top: 0.5rem;">Generated with <span class="heart">&#9829;</span> by Claude Code</p>
     </footer>
+    {interactive_js}
 </body>
 </html>
 """
@@ -976,6 +931,242 @@ def create_churn_html(fadeouts, new_friends):
     """
 
 
+def create_health_section_html(health_data):
+    """Create relationship health section HTML - simplified to just fading/emerging."""
+    if not health_data:
+        return ""
+
+    fading = health_data.get('fading_friendships', [])[:5]
+    emerging = health_data.get('emerging_connections', [])[:5]
+
+    if not fading and not emerging:
+        return ""
+
+    def format_days_ago(days):
+        """Convert days to human-readable format."""
+        if days == 0:
+            return "today"
+        elif days == 1:
+            return "yesterday"
+        elif days < 7:
+            return f"{days} days ago"
+        elif days < 14:
+            return "last week"
+        elif days < 30:
+            return f"{days // 7} weeks ago"
+        elif days < 60:
+            return "last month"
+        elif days < 365:
+            return f"{days // 30} months ago"
+        else:
+            years = days // 365
+            return f"{years} year{'s' if years > 1 else ''} ago"
+
+    # To Rekindle (formerly "Fading Friendships" - reframed positively)
+    fading_html = ""
+    if fading:
+        fading_items = ""
+        for f in fading:
+            days = f['days_since_contact']
+            time_ago = format_days_ago(days)
+            baseline = f.get('baseline_rate', 0)
+            recent = f.get('recent_rate', 0)
+            total = f.get('total_messages', 0)
+            drop = f.get('drop_percentage', 0)
+            fading_items += f"""
+            <div class="alert-card fading">
+                <div class="alert-icon">💬</div>
+                <div class="alert-content">
+                    <div class="alert-name">{f['contact_name']}</div>
+                    <div class="alert-detail">{total:,} total msgs • Was ~{baseline:.0f}/wk → now ~{recent:.0f}/wk ({drop:.0f}% drop)</div>
+                    <div class="alert-time">Last message: {time_ago}</div>
+                </div>
+            </div>
+            """
+        fading_html = f"""
+        <div class="alert-section">
+            <h4>💛 To Rekindle?</h4>
+            <p style="color: #8E8E93; font-size: 14px; margin-bottom: 16px;">People you used to talk to more — might be worth reaching out.</p>
+            {fading_items}
+        </div>
+        """
+
+    # Emerging connections
+    emerging_html = ""
+    if emerging:
+        emerging_items = ""
+        for e in emerging:
+            total = e.get('total_messages', 0)
+            recent = e.get('recent_messages', 0)
+            rate = e.get('msgs_per_week', 0)
+            baseline = e.get('baseline_rate', 0)
+            growth = e.get('growth', '')
+
+            if e.get('is_revived'):
+                label = f"Revived! Was quiet, now ~{rate:.0f} msgs/wk"
+                icon = "&#128260;"  # counterclockwise arrows
+            elif growth and 'x' in str(growth):
+                label = f"{growth} growth • Was ~{baseline:.0f}/wk → now ~{rate:.0f}/wk"
+                icon = "&#128200;"  # chart increasing
+            else:
+                label = f"~{rate:.0f} msgs/wk"
+                icon = "&#127775;"  # star
+
+            emerging_items += f"""
+            <div class="alert-card emerging">
+                <div class="alert-icon">{icon}</div>
+                <div class="alert-content">
+                    <div class="alert-name">{e['contact_name']}</div>
+                    <div class="alert-detail">{label}</div>
+                    <div class="alert-time">{total:,} total messages • {recent} in last 30 days</div>
+                </div>
+            </div>
+            """
+        emerging_html = f"""
+        <div class="alert-section">
+            <h4><i class="fas fa-star" style="color: #34C759;"></i> Emerging Connections</h4>
+            {emerging_items}
+        </div>
+        """
+
+    return f"""
+    <div class="alerts-container">
+        {fading_html}
+        {emerging_html}
+    </div>
+    """
+
+
+def create_interactive_controls_html(contacts, years):
+    """Create interactive control panel HTML."""
+    # First contact options - preselect first contact
+    contact1_options = '\n'.join([
+        f'<option value="{c}" {"selected" if i == 0 else ""}>{c}</option>'
+        for i, c in enumerate(contacts[:30])
+    ])
+    # Second contact options - preselect second contact
+    contact2_options = '\n'.join([
+        f'<option value="{c}" {"selected" if i == 1 else ""}>{c}</option>'
+        for i, c in enumerate(contacts[:30])
+    ])
+
+    return f"""
+    <div class="interactive-controls" id="interactive-panel">
+        <div class="control-row">
+            <div class="control-group">
+                <span class="control-label">Compare Two Contacts</span>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                    <select class="contact-select" id="contact1" onchange="compareContacts()">
+                        {contact1_options}
+                    </select>
+                    <span style="color: #8E8E93;">vs</span>
+                    <select class="contact-select" id="contact2" onchange="compareContacts()">
+                        {contact2_options}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="comparison-panel" id="comparison-panel"></div>
+    </div>
+    """
+
+
+def create_interactive_js(contact_data):
+    """Create JavaScript for interactive features."""
+    import json as json_module
+    contact_json = json_module.dumps(contact_data)
+
+    return f"""
+    <script>
+    // Contact data for interactive features
+    const contactData = {contact_json};
+
+    // Contact comparison
+    function formatResponseTime(mins) {{
+        if (mins === null || mins === undefined) return 'N/A';
+        if (mins < 1) return Math.round(mins * 60) + 's';
+        if (mins < 60) return Math.round(mins) + 'm';
+        if (mins < 1440) return (mins / 60).toFixed(1) + 'h';
+        return (mins / 1440).toFixed(1) + 'd';
+    }}
+
+    function formatSentiment(val) {{
+        if (val === null || val === undefined) return 'N/A';
+        const sign = val >= 0 ? '+' : '';
+        // Thresholds tuned for casual text messages (VADER scores cluster 0.1-0.2)
+        if (val > 0.18) return `Positive (${{sign}}${{val.toFixed(2)}})`;
+        if (val < 0.05) return `Negative (${{val.toFixed(2)}})`;
+        return `Neutral (${{sign}}${{val.toFixed(2)}})`;
+    }}
+
+    function formatImessagePct(val) {{
+        if (val === null || val === undefined) return 'N/A';
+        const smsPct = 100 - val;
+        if (smsPct < 1) return 'iMessage only';
+        if (val < 1) return 'SMS only';
+        return `${{val.toFixed(0)}}% iMessage`;
+    }}
+
+    function formatLopsidedness(val) {{
+        if (!val || val === 1) return 'Balanced';
+        if (val > 1) return `You +${{((val - 1) * 100).toFixed(0)}}%`;
+        return `They +${{((1/val - 1) * 100).toFixed(0)}}%`;
+    }}
+
+    function compareContacts() {{
+        const contact1 = document.getElementById('contact1')?.value;
+        const contact2 = document.getElementById('contact2')?.value;
+        const panel = document.getElementById('comparison-panel');
+
+        if (!contact1 || !contact2 || !panel) return;
+
+        const data1 = contactData[contact1] || {{}};
+        const data2 = contactData[contact2] || {{}};
+
+        panel.innerHTML = `
+            <div class="comparison-grid">
+                <div class="comparison-side">
+                    <div class="comparison-name">${{contact1}}</div>
+                    <div class="comparison-stat"><span>Total Messages</span><span>${{(data1.total || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Sent / Received</span><span>${{(data1.sent || 0).toLocaleString()}} / ${{(data1.received || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Balance</span><span>${{formatLopsidedness(data1.lopsidedness)}}</span></div>
+                    <div class="comparison-stat"><span>Years Active</span><span>${{data1.years_active || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>First Message</span><span>${{data1.first_message || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>Last Message</span><span>${{data1.last_message || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>Your Response</span><span>${{formatResponseTime(data1.your_response_min)}}</span></div>
+                    <div class="comparison-stat"><span>Their Response</span><span>${{formatResponseTime(data1.their_response_min)}}</span></div>
+                    <div class="comparison-stat"><span>Vibe</span><span>${{formatSentiment(data1.sentiment)}}</span></div>
+                    <div class="comparison-stat"><span>Service</span><span>${{formatImessagePct(data1.imessage_pct)}}</span></div>
+                    <div class="comparison-stat"><span>Attachments</span><span>${{(data1.attachments || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Links Shared</span><span>${{(data1.links || 0).toLocaleString()}}</span></div>
+                </div>
+                <div class="comparison-vs">VS</div>
+                <div class="comparison-side">
+                    <div class="comparison-name">${{contact2}}</div>
+                    <div class="comparison-stat"><span>Total Messages</span><span>${{(data2.total || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Sent / Received</span><span>${{(data2.sent || 0).toLocaleString()}} / ${{(data2.received || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Balance</span><span>${{formatLopsidedness(data2.lopsidedness)}}</span></div>
+                    <div class="comparison-stat"><span>Years Active</span><span>${{data2.years_active || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>First Message</span><span>${{data2.first_message || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>Last Message</span><span>${{data2.last_message || 'N/A'}}</span></div>
+                    <div class="comparison-stat"><span>Your Response</span><span>${{formatResponseTime(data2.your_response_min)}}</span></div>
+                    <div class="comparison-stat"><span>Their Response</span><span>${{formatResponseTime(data2.their_response_min)}}</span></div>
+                    <div class="comparison-stat"><span>Vibe</span><span>${{formatSentiment(data2.sentiment)}}</span></div>
+                    <div class="comparison-stat"><span>Service</span><span>${{formatImessagePct(data2.imessage_pct)}}</span></div>
+                    <div class="comparison-stat"><span>Attachments</span><span>${{(data2.attachments || 0).toLocaleString()}}</span></div>
+                    <div class="comparison-stat"><span>Links Shared</span><span>${{(data2.links || 0).toLocaleString()}}</span></div>
+                </div>
+            </div>
+        `;
+        panel.classList.add('active');
+    }}
+
+    // Load comparison on page load
+    document.addEventListener('DOMContentLoaded', compareContacts);
+    </script>
+    """
+
+
 def embed_plotly_chart(fig, div_id, height=400):
     """Convert plotly figure to embedded HTML with iMessage styling."""
     fig.update_layout(
@@ -996,17 +1187,246 @@ def embed_plotly_chart(fig, div_id, height=400):
     """
 
 
+def create_extended_insights_html(extended_insights):
+    """Create HTML for extended insights (links, attachments, SMS breakdown)."""
+    if not extended_insights:
+        return ""
+
+    cards = []
+
+    # Links - top domains with sent/received breakdown
+    links = extended_insights.get('links', {})
+    if links.get('available'):
+        top_domains = links.get('top_domains_detailed', [])
+
+        domain_list = ''.join([
+            f"<li>{d['domain']} <span class='stat-detail'>({d['total']:,} - {d['sent']} sent, {d['received']} received)</span></li>"
+            for d in top_domains[:5]
+        ]) if top_domains else '<li>None</li>'
+
+        cards.append(f"""
+        <div class="insight-card" style="border-left-color: #5856D6;">
+            <div class="insight-title">🔗 Link Sharing</div>
+            <div class="insight-content">
+                <p style="margin-bottom: 0.5rem;">{links.get('total_links', 0):,} links shared across {links.get('unique_domains', 0)} domains</p>
+                <p style="margin-top: 0.5rem;"><strong>Top Domains:</strong></p>
+                <ol style="margin: 0; padding-left: 1.2rem;">{domain_list}</ol>
+            </div>
+        </div>
+        """)
+
+    # Attachments
+    attachments = extended_insights.get('attachments', {})
+    if attachments.get('available'):
+        type_counts = attachments.get('type_counts', {})
+        total = attachments.get('total_attachments', 0)
+
+        type_breakdown = ', '.join([f"{count:,} {t}s" for t, count in type_counts.items() if count > 0])
+
+        # Photo contacts breakdown
+        top_photo = attachments.get('top_photo_contacts', [])
+        photo_list = ''.join([
+            f"<li>{p['contact_name']} <span class='stat-detail'>({p['total']:,} - {p['sent']} sent, {p['received']} received)</span></li>"
+            for p in top_photo[:8]
+        ]) if top_photo else '<li>None</li>'
+
+        # Video contacts breakdown
+        top_video = attachments.get('top_video_contacts', [])
+        video_list = ''.join([
+            f"<li>{v['contact_name']} <span class='stat-detail'>({v['total']:,} - {v['sent']} sent, {v['received']} received)</span></li>"
+            for v in top_video[:5]
+        ]) if top_video else ''
+
+        video_section = f"""
+            <p style="margin-top: 1rem;"><strong>📹 Top Video Sharers:</strong></p>
+            <ol style="margin: 0; padding-left: 1.2rem;">{video_list}</ol>
+        """ if video_list else ''
+
+        cards.append(f"""
+        <div class="insight-card" style="border-left-color: #FF2D55;">
+            <div class="insight-title">📎 Attachments</div>
+            <div class="insight-content">
+                <p><strong>{total:,}</strong> total attachments shared</p>
+                <p style="font-size: 0.9rem; color: #666;">{type_breakdown}</p>
+                <p style="margin-top: 1rem;"><strong>📸 Top Photo Sharers:</strong></p>
+                <ol style="margin: 0; padding-left: 1.2rem;">{photo_list}</ol>
+                {video_section}
+            </div>
+        </div>
+        """)
+
+    # SMS vs iMessage
+    service = extended_insights.get('service_breakdown', {})
+    if service.get('available'):
+        overall_pct = service.get('overall_pct', {})
+        imessage_pct = overall_pct.get('iMessage', 0)
+        sms_pct = overall_pct.get('SMS', 0)
+        sms_contacts = service.get('sms_heavy_contacts', [])
+
+        sms_people = ', '.join([c['contact_name'] for c in sms_contacts[:3]]) if sms_contacts else 'None'
+
+        cards.append(f"""
+        <div class="insight-card" style="border-left-color: #5AC8FA;">
+            <div class="insight-title">💬 iMessage vs SMS</div>
+            <div class="insight-content">
+                <p><strong>{imessage_pct}%</strong> iMessage, <strong>{sms_pct}%</strong> SMS</p>
+                <p style="margin-top: 0.5rem;">Android friends (SMS-heavy): <strong>{sms_people}</strong></p>
+            </div>
+        </div>
+        """)
+
+    # Response times
+    response = extended_insights.get('response_times', {})
+    if response.get('available'):
+        they_fast = response.get('they_respond_fast', [])
+        they_slow = response.get('they_respond_slow', [])
+        you_fast = response.get('you_respond_fast', [])
+        you_slow = response.get('you_respond_slow', [])
+
+        # Build lists
+        they_fast_list = ''.join([
+            f"<li>{r['contact_name']} <span class='stat-detail'>({r['time_formatted']})</span></li>"
+            for r in they_fast[:4]
+        ]) if they_fast else '<li>N/A</li>'
+
+        they_slow_list = ''.join([
+            f"<li>{r['contact_name']} <span class='stat-detail'>({r['time_formatted']})</span></li>"
+            for r in they_slow[:4]
+        ]) if they_slow else '<li>N/A</li>'
+
+        you_fast_list = ''.join([
+            f"<li>{r['contact_name']} <span class='stat-detail'>({r['time_formatted']})</span></li>"
+            for r in you_fast[:4]
+        ]) if you_fast else '<li>N/A</li>'
+
+        you_slow_list = ''.join([
+            f"<li>{r['contact_name']} <span class='stat-detail'>({r['time_formatted']})</span></li>"
+            for r in you_slow[:4]
+        ]) if you_slow else '<li>N/A</li>'
+
+        cards.append(f"""
+        <div class="insight-card" style="border-left-color: #34C759;">
+            <div class="insight-title">⏱️ Response Times</div>
+            <div class="insight-content">
+                <p><strong>🏃 Quick to Reply to You:</strong></p>
+                <ol style="margin: 0 0 0.5rem 0; padding-left: 1.2rem;">{they_fast_list}</ol>
+                <p><strong>🐢 Slow to Reply to You:</strong></p>
+                <ol style="margin: 0 0 0.5rem 0; padding-left: 1.2rem;">{they_slow_list}</ol>
+                <p><strong>⚡ You Reply Fastest To:</strong></p>
+                <ol style="margin: 0 0 0.5rem 0; padding-left: 1.2rem;">{you_fast_list}</ol>
+                <p><strong>😅 You Leave Hanging:</strong></p>
+                <ol style="margin: 0; padding-left: 1.2rem;">{you_slow_list}</ol>
+            </div>
+        </div>
+        """)
+
+    if not cards:
+        return ""
+
+    return f"""
+    <section>
+        <div class="section-header">
+            <div class="section-icon teal"><i class="fas fa-microscope"></i></div>
+            <h2>Hidden Data Insights</h2>
+        </div>
+        <p class="section-subtitle">Response times, attachments, and link sharing patterns.</p>
+        <div class="insights-grid">
+            {''.join(cards)}
+        </div>
+    </section>
+    """
+
+
 def generate_report(total_messages, total_sent, total_received, total_contacts,
                    top_contacts, charts, phrases_df, emojis_df, topics_df, insights,
                    top_2025=None, df_2025=None, top_by_year=None, monthly_top_2025=None,
                    wordcloud_old=None, wordcloud_new=None,
                    formal_contacts=None, casual_contacts=None,
                    agreers=None, debaters=None,
-                   fadeouts=None, new_friends=None):
+                   fadeouts=None, new_friends=None,
+                   health_data=None, llm_narratives=None,
+                   interactive_data=None, extended_insights=None,
+                   lopsidedness_df=None, sentiment_df=None, response_times_df=None):
     """Generate the complete HTML report."""
     sections = []
 
     num_years = END_YEAR - START_YEAR
+
+    # Build lopsidedness lookup
+    lopsidedness_lookup = {}
+    if lopsidedness_df is not None and hasattr(lopsidedness_df, 'iterrows'):
+        for _, row in lopsidedness_df.iterrows():
+            name = row.get('contact_name')
+            if name:
+                lopsidedness_lookup[name] = round(row.get('lopsidedness', 1.0), 2)
+
+    # Build sentiment lookup
+    sentiment_lookup = {}
+    if sentiment_df is not None and hasattr(sentiment_df, 'iterrows'):
+        for _, row in sentiment_df.iterrows():
+            name = row.get('contact_name')
+            if name:
+                sentiment_lookup[name] = round(row.get('avg_sentiment', 0), 3)
+
+    # Build response times lookup
+    response_times_lookup = {}
+    if response_times_df is not None and hasattr(response_times_df, 'iterrows'):
+        for _, row in response_times_df.iterrows():
+            name = row.get('contact_name')
+            if name:
+                response_times_lookup[name] = {
+                    'your_response_min': round(row.get('your_response_time_min', 0) or 0, 1),
+                    'their_response_min': round(row.get('their_response_time_min', 0) or 0, 1),
+                }
+
+    # Build extended lookups from extended_insights
+    imessage_pct_lookup = {}
+    attachments_lookup = {}
+    links_lookup = {}
+    if extended_insights:
+        service_data = extended_insights.get('service_breakdown', {})
+        if service_data.get('available'):
+            imessage_pct_lookup = service_data.get('imessage_pct_by_contact', {})
+        attachments_data = extended_insights.get('attachments', {})
+        if attachments_data.get('available'):
+            attachments_lookup = attachments_data.get('attachments_by_contact', {})
+        links_data = extended_insights.get('links', {})
+        if links_data.get('available'):
+            links_lookup = links_data.get('links_by_contact', {})
+
+    # Prepare interactive data for JS - build from top_contacts with all available stats
+    contact_js_data = {}
+    if interactive_data:
+        contact_js_data = interactive_data.get('contacts', {})
+    elif hasattr(top_contacts, 'iterrows'):
+        for _, row in top_contacts.head(30).iterrows():
+            name = row.get('contact_name')
+            if name:
+                # Format dates
+                first_msg = row.get('first_message')
+                last_msg = row.get('last_message')
+                first_date = first_msg.strftime('%Y-%m-%d') if hasattr(first_msg, 'strftime') else str(first_msg)[:10]
+                last_date = last_msg.strftime('%Y-%m-%d') if hasattr(last_msg, 'strftime') else str(last_msg)[:10]
+
+                contact_js_data[name] = {
+                    'total': int(row.get('total_messages', 0)),
+                    'sent': int(row.get('sent', 0)),
+                    'received': int(row.get('received', 0)),
+                    'years_active': int(row.get('years_active', 0)),
+                    'first_message': first_date,
+                    'last_message': last_date,
+                    'lopsidedness': lopsidedness_lookup.get(name, 1.0),
+                    'sentiment': sentiment_lookup.get(name),
+                    'your_response_min': response_times_lookup.get(name, {}).get('your_response_min'),
+                    'their_response_min': response_times_lookup.get(name, {}).get('their_response_min'),
+                    'imessage_pct': imessage_pct_lookup.get(name),
+                    'attachments': attachments_lookup.get(name, 0),
+                    'links': links_lookup.get(name, 0),
+                }
+
+    # Get years for interactive controls
+    years_list = list(range(START_YEAR, END_YEAR))
+    contact_names = list(contact_js_data.keys())[:30]
 
     # Section 1: Top People
     section1 = f"""
@@ -1132,6 +1552,95 @@ def generate_report(total_messages, total_sent, total_received, total_contacts,
         """
         sections.append(section8)
 
+    # Section 9: Connection Changes (To Rekindle + Emerging)
+    if health_data:
+        health_html = create_health_section_html(health_data)
+        if health_html:
+            section9 = f"""
+            <section>
+                <div class="section-header">
+                    <div class="section-icon green"><i class="fas fa-heart"></i></div>
+                    <h2>Connection Changes</h2>
+                </div>
+                <p class="section-subtitle">Relationships that have shifted recently.</p>
+                {health_html}
+            </section>
+            """
+            sections.append(section9)
+
+    # Section 10: Extended Insights (read receipts, links, attachments)
+    extended_html = create_extended_insights_html(extended_insights)
+    if extended_html:
+        sections.append(extended_html)
+
+    # Section 11: LLM Narratives (if available) or placeholder
+    if llm_narratives:
+        llm_sections = []
+        if llm_narratives.get('wrapped_reflection'):
+            text = llm_narratives['wrapped_reflection'].replace('\n\n', '</p><p>').replace('\n', '</p><p>')
+            llm_sections.append(f"""
+            <div class="llm-narrative">
+                <h3>Your iMessage Wrapped</h3>
+                <p>{text}</p>
+            </div>
+            """)
+        if llm_narratives.get('psychological_profile'):
+            text = llm_narratives['psychological_profile'].replace('\n\n', '</p><p>').replace('\n', '</p><p>')
+            llm_sections.append(f"""
+            <div class="llm-narrative">
+                <h3>Communication Style Profile</h3>
+                <p>{text}</p>
+            </div>
+            """)
+        if llm_sections:
+            section11 = f"""
+            <section>
+                <div class="section-header">
+                    <div class="section-icon purple"><i class="fas fa-brain"></i></div>
+                    <h2>AI-Generated Insights</h2>
+                </div>
+                <p class="section-subtitle">Personalized narratives generated by Claude.</p>
+                {''.join(llm_sections)}
+            </section>
+            """
+            sections.append(section11)
+    else:
+        # Show placeholder when LLM is disabled
+        section11 = """
+        <section>
+            <div class="section-header">
+                <div class="section-icon purple"><i class="fas fa-brain"></i></div>
+                <h2>AI-Generated Insights</h2>
+            </div>
+            <div class="llm-narrative">
+                <p class="llm-placeholder">
+                    <strong>Want personalized AI insights?</strong><br><br>
+                    Run with the <code>--llm</code> flag to generate AI-powered narratives about your messaging patterns.<br><br>
+                    <em>Requirements:</em> Claude Code CLI installed<br>
+                    <em>Model:</em> Claude Opus (for best quality on personal reflections)<br>
+                    <em>Usage:</em> ~250k tokens
+                </p>
+            </div>
+        </section>
+        """
+        sections.append(section11)
+
+    # Section 12: Interactive Controls (at the end)
+    if contact_js_data:
+        interactive_section = f"""
+        <section>
+            <div class="section-header">
+                <div class="section-icon blue"><i class="fas fa-sliders-h"></i></div>
+                <h2>Explore Your Data</h2>
+            </div>
+            {create_interactive_controls_html(contact_names, years_list)}
+        </section>
+        """
+        sections.append(interactive_section)
+
+    # Generate interactive JavaScript
+    interactive_js = create_interactive_js(contact_js_data) if contact_js_data else ""
+
     # Generate final HTML
     html = HTML_TEMPLATE.format(
         start_year=START_YEAR,
@@ -1142,6 +1651,7 @@ def generate_report(total_messages, total_sent, total_received, total_contacts,
         total_contacts=total_contacts,
         num_years=num_years,
         sections=''.join(sections),
+        interactive_js=interactive_js,
     )
 
     return html

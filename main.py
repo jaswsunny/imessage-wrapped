@@ -1,11 +1,43 @@
 """Main orchestration script for iMessage Wrapped."""
+import argparse
 import pandas as pd
 from pathlib import Path
 import json
 
 from config import DATA_DIR, START_YEAR, END_YEAR, EXCLUDED_CONTACTS, MIN_TWO_WAY_RATIO, MIN_MESSAGES_FOR_SENTIMENT
 import re
-from extract import extract_messages
+
+
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description='iMessage Wrapped - Generate beautiful insights from your iMessage history',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python main.py                  # Full analysis (no LLM, shows cached if available)
+  python main.py --llm            # Generate LLM insights if not cached
+  python main.py --regenerate-llm # Force regenerate LLM insights
+        """
+    )
+
+    parser.add_argument(
+        '--llm',
+        action='store_true',
+        help='Generate LLM-powered insights if not cached (requires Claude Code CLI, uses ~250k tokens)'
+    )
+
+    parser.add_argument(
+        '--regenerate-llm',
+        action='store_true',
+        help='Force regenerate LLM insights even if cached'
+    )
+
+    return parser.parse_args()
+
+
+from extract import extract_messages, extract_attachments
+from analysis.extended import generate_extended_insights
 from contacts import (
     get_contacts_from_macos,
     create_contact_mappings,
@@ -50,14 +82,33 @@ from visualize import (
     create_sentiment_bar,
     create_emoji_grid,
     create_question_ratio_line,
-    create_monthly_top_contacts,
 )
 from report import generate_report, save_report
+from analysis.health import generate_health_insights
+from llm.insights import generate_llm_insights
 
 
-def main():
+def main(args=None):
+    """Main entry point for iMessage Wrapped."""
+    if args is None:
+        args = parse_args()
+
+    # Handle LLM cache clearing (--regenerate-llm implies --llm)
+    if args.regenerate_llm:
+        from llm.insights import LLMInsights
+        llm = LLMInsights()
+        llm.clear_cache()
+        print("LLM cache cleared.")
+
+    # Determine if we should generate new LLM insights
+    # --llm: generate if not cached
+    # --regenerate-llm: always regenerate (implies --llm)
+    use_llm = args.llm or args.regenerate_llm
+
     print("=" * 60)
     print("iMessage Wrapped Generator")
+    if not use_llm:
+        print("  LLM: Disabled")
     print("=" * 60)
 
     # Step 1: Extract messages
@@ -158,6 +209,32 @@ def main():
     print("  - Topic modeling...")
     topics_by_year = get_topics_by_year(df)
     topics_by_contact = get_topics_by_contact(df, contacts=top_names[:10])
+
+    # Step 5.5: Relationship health analysis
+    print("\n[5.5/8] Analyzing relationship health...")
+    health_data = generate_health_insights(df)
+    print(f"  - Fading friendships detected: {health_data['summary']['fading_count']}")
+    print(f"  - Emerging connections detected: {health_data['summary']['emerging_count']}")
+
+    # Step 5.6: Extended insights (attachments, links, response times)
+    print("\n[5.6/8] Generating extended insights...")
+    try:
+        attachments_df = extract_attachments()
+        # Map contact names to attachments
+        contact_map = df[['contact_id', 'contact_name']].drop_duplicates().set_index('contact_id')['contact_name'].to_dict()
+        attachments_df['contact_name'] = attachments_df['contact_id'].map(contact_map)
+        print(f"  - Extracted {len(attachments_df):,} attachments")
+    except Exception as e:
+        print(f"  - Attachments extraction failed: {e}")
+        attachments_df = None
+
+    extended_insights = generate_extended_insights(df, attachments_df)
+    if extended_insights.get('read_receipts', {}).get('fast_readers'):
+        print(f"  - Read receipt data available")
+    if extended_insights.get('links', {}).get('available'):
+        print(f"  - Found {extended_insights['links']['total_links']:,} shared links")
+    if extended_insights.get('attachments', {}).get('available'):
+        print(f"  - Attachment stats available")
 
     # Step 6: Save data for follow-up queries
     print("\n[6/8] Saving data for follow-up queries...")
@@ -585,6 +662,41 @@ def main():
             f"{pct:.0f}% of your messages to them are between midnight-4am ({count} messages). When you can't sleep, this is who you reach for."
         ))
 
+    # Step 7.5: LLM insights (optional)
+    llm_narratives = None
+    if use_llm:
+        print("\n[7.5/8] Generating LLM insights (optional)...")
+        try:
+            llm_narratives = generate_llm_insights(
+                df=df,
+                total_messages=len(df),
+                total_contacts=df['contact_name'].nunique(),
+                years_span=END_YEAR - START_YEAR,
+                health_data=health_data,
+                top_contacts=top_contacts.to_dict('records') if hasattr(top_contacts, 'to_dict') else top_contacts,
+                yearly_volume=yearly_volume.to_dict('records') if hasattr(yearly_volume, 'to_dict') else yearly_volume,
+            )
+            if llm_narratives:
+                print(f"  - Generated {len(llm_narratives)} narrative sections")
+            else:
+                print("  - LLM insights skipped (no API key or unavailable)")
+        except Exception as e:
+            print(f"  - LLM insights failed: {e}")
+            llm_narratives = None
+    else:
+        # Check if cached LLM insights exist
+        from llm.insights import LLMInsights
+        llm = LLMInsights()
+        if llm.cache_path.exists():
+            try:
+                with open(llm.cache_path, 'r') as f:
+                    llm_narratives = json.load(f)
+                print(f"\n[7.5/8] Loaded cached LLM insights ({len(llm_narratives)} sections)")
+            except Exception:
+                print("\n[7.5/8] LLM insights disabled (no cache)")
+        else:
+            print("\n[7.5/8] LLM insights disabled (use --llm to generate)")
+
     # Step 8: Generate report
     print("\n[8/8] Generating HTML report...")
 
@@ -608,9 +720,15 @@ def main():
         df_2025=df_2025,
         top_by_year=top_by_year,
         monthly_top_2025=monthly_top_1,
+        health_data=health_data,
+        llm_narratives=llm_narratives,
+        extended_insights=extended_insights,
+        lopsidedness_df=lopsidedness,
+        sentiment_df=sentiment_by_contact,
+        response_times_df=response_times,
     )
 
-    output_path = save_report(html)
+    output_path = save_report(html, filename='wrapped.html')
 
     print("\n" + "=" * 60)
     print("Done!")
